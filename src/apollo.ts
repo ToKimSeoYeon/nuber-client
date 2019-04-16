@@ -9,6 +9,13 @@ const client = new ApolloClient({
       }
     }
   },
+  request: async (operation: Operation) => {
+    operation.setContext({
+      headers: {
+        "X-JWT": localStorage.getItem("jwt") || ""
+      }
+    });
+  },
   resolvers: {
     Mutation: {
       logUserIn: (_, { token }, { cache }) => {
@@ -32,13 +39,6 @@ const client = new ApolloClient({
         return null;
       }
     }
-  },
-  request: async (operation: Operation) => {
-    operation.setContext({
-      headers: {
-        "X-JWT": localStorage.getItem("jwt") || ""
-      }
-    });
   },
   uri: "http://localhost:4000/graphql"
 });

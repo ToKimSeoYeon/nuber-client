@@ -1,5 +1,2 @@
-import React from "react";
-
-const R = () => <span>bla</span>;
-
-export default R;
+import LoginPresenter from "./LoginPresenter";
+export default LoginPresenter;
